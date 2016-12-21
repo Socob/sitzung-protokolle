@@ -1,52 +1,109 @@
-% Header-Datei für Protokolle der Fachschaft Physik
-% 2014-04-17, Simon May
-%%% Pakete & Klassen %%%
-\documentclass[
-  a4paper,          % Papierformat
-  12pt,             % Schriftgröße
-  oneside,          % einseitiges Layout
-  ngerman           % neue deutsche Rechtschreibung
-]{scrartcl}         % Verwendung des KOMA-Script
-\usepackage{babel}                % Silbentrennung, sprachspezifische Einstellungen
-\usepackage[T1]{fontenc}          % Mögliche darstellbare Zeichen (Umlaute, Sonderzeichen...)
-\usepackage[utf8]{inputenc}       % Zeichenkodierung der TeX-Datei
-\usepackage{lmodern}              % Schriftart
-\usepackage{textcomp}             % führt Sonderzeichen ein
-\usepackage{scrpage2}             % Für \ihead{}, \ifoot{} etc.
-\usepackage{xcolor}               % Farben ermöglichen
-\usepackage{csquotes}             % "Schlaue" Anführungszeichen
-\usepackage[
-  bookmarksnumbered, unicode
-]
-{hyperref}                        % Verlinkung, Querverweise können im PDF angeklickt werden
-\usepackage{enumitem}             % schönere Aufzählungen
-\usepackage{longtable}            % für extra lange Tabellen
-\usepackage{graphicx}             % Paket für Bilder-Einbindung (EPS, PNG, JPG, PDF)
-\usepackage[
-  left=1.8cm, right=1.8cm, top=1.8cm, bottom=1.5cm
-]{geometry}                       % Seitenränder
-\usepackage[final]{pdfpages}      % Einfügen von mehrseitigen PDF-Dateien, benutzen mit \includepdf[pages=-, pagecommand={\thispagestyle{headings}}]{doc.pdf}
+% Header-Datei für Protokolle der Fachschaft Physik der WWU Münster
+% Datum: 2014-12-09
+% Autor: Simon May
 
-%%% Einstellungen %%%
-% ermöglicht Kopfzeilen
-\pagestyle{scrheadings}
+%%% Pakete & Klassen
+% Verwendung von KOMA-Script
+\documentclass[
+	% Papierformat
+	a4paper,
+	% Schriftgröße
+	12pt,
+	% einseitiges Layout
+	oneside,
+	% Papiergröße korrekt ins Dokument schreiben
+	pagesize,
+	% deutsches Dokument (neue deutsche Rechtschreibung)
+	ngerman
+]{scrartcl}
+
+% Unterscheidung zwischen pdfTeX und LuaTeX
+\usepackage{iftex}
+\ifLuaTeX
+	% Einstellung der Schriftart
+	\usepackage{fontspec}
+	\defaultfontfeatures{Ligatures=TeX}
+	% Silbentrennung, sprachspezifische Einstellungen
+	\usepackage{polyglossia}
+	\setmainlanguage{german}
+\else
+	% Silbentrennung, sprachspezifische Einstellungen
+	\usepackage{babel}
+	% Mögliche darstellbare Zeichen (Umlaute, Sonderzeichen...)
+	\usepackage[T1]{fontenc}
+	% Zeichenkodierung der TeX-Datei
+	\usepackage[utf8]{inputenc}
+	% Schriftart
+	\usepackage{lmodern}
+	% führt Befehle für Sonderzeichen ein
+	\usepackage{textcomp}
+\fi
+% Für Kopf-/Fußzeile etc.
+\usepackage{scrpage2}
+% Farben ermöglichen
+\usepackage{xcolor}
+% schönere Aufzählungen
+\usepackage{enumitem}
+% "Schlaue" Anführungszeichen
+\usepackage{csquotes}
+% für extra lange Tabellen
+\usepackage{longtable}
+% Paket für Bilder-Einbindung (EPS, PNG, JPG, PDF)
+\usepackage{graphicx}
+% Zum Einbinden von Zitaten oder Textdateien
+\usepackage{listingsutf8}
+\usepackage{euro}
+% Zur einfachen Eingabe von Zahlen mit Einheiten
+\usepackage{siunitx}
+% Seitenränder
+\usepackage[
+	left=1.8cm,
+	right=1.8cm,
+	top=1.8cm,
+	bottom=1.5cm
+]{geometry}
+% Verlinkung, Querverweise können im PDF angeklickt werden
+\usepackage[bookmarksnumbered, unicode]{hyperref}
+
+%%% Einstellungen
+% Mehr Freiraum in Tabellen
+\renewcommand{\arraystretch}{1.1}
+
+% Einstellungen für Sonderzeichen bei listings
+\lstset{
+	columns=flexible,
+	breaklines=true,
+	basicstyle=\ttfamily,
+	literate=
+		{ö}{{\"o}}1
+		{ä}{{\"a}}1
+		{ü}{{\"u}}1
+		{Ö}{{\"O}}1
+		{Ä}{{\"A}}1
+		{Ü}{{\"U}}1
+		{ß}{{\ss}}1
+		{§}{{\S}}1
+}
+
+% Anführungszeichen automatisch umwandeln
+\MakeOuterQuote{"}
+
+% Einstellungen für siunitx
+\sisetup{mode=text}
+
+% Einstellungen für Aufzählungen
+\setlist{leftmargin=2em}
+
 % Kopfzeile links
 \ihead{Protokoll der Fachschaftssitzung vom \protokolldatum}
 % Kopfzeile rechts
 \ohead{\pagemark}
 % Fußzeile leer
 \cfoot{}
+% Dokument mit Kopf-/Fußzeile
+\pagestyle{scrheadings}
 
-% Anführungszeichen automatisch umwandeln
-\MakeOuterQuote{"}
-% Einstellungen für Aufzählungen
-\setlist{itemsep=0cm, parsep=0cm, leftmargin=2em}
-% Hintergrundfarbe
-\pagecolor{white}
-% Textfarbe
-\color{black}
-
-%%% Definitionen %%%
+%%% Definitionen
 \makeatletter
 \newcounter{protokollcounter}
 \newcommand{\protokollparse}[1]{\@for\@tempa:=#1\do{\stepcounter{protokollcounter}}}
@@ -60,17 +117,21 @@
 \newcommand{\cntprotokollanwesend}{\setcounter{protokollcounter}{0}\protokollparse{\protokollanwesend}\arabic{protokollcounter}}
 \newcommand{\cntprotokollfehlend}{\setcounter{protokollcounter}{0}\protokollparse{\protokollfehlend}\arabic{protokollcounter}}
 
-\newcommand{\protokolltitlepage}{%
+\newcommand{\protokolltitlepage}{
 	\begin{center}
-		\includegraphics[width=0.75\textwidth]{fs-physik-logo.pdf}\\
-		\vspace{0.3cm}
-		\Huge{\textbf{Protokoll der Fachschaftssitzung} \\
-		\vspace{0.2cm}
-		\protokolldatum\\
-		\vspace{0.2cm}
-		}
-		\normalsize
-
+		\setlength{\parindent}{0cm}
+		\includegraphics[width=0.75\textwidth]{fs-physik-logo.pdf}
+		
+		{\usekomafont{title}\huge
+		Protokoll der Fachschaftssitzung
+		\par}
+		
+		\medskip
+		{\usekomafont{date}
+		\protokolldatum
+		\par}
+		
+		\medskip
 		\begin{longtable}{|p{6.1cm}|p{6.1cm}|}
 			\hline
 			\endfirsthead
@@ -81,14 +142,15 @@
 			\protokollant \\
 			\hline
 			\multicolumn{2}{|p{12.5cm}|}{\textbf{Anwesende (\cntprotokollanwesend): }} \\
-			\multicolumn{2}{|p{12.5cm}|}{\protokollanwesend}\\
+			\multicolumn{2}{|p{12.5cm}|}{\protokollanwesend} \\
 			\hline
 			\multicolumn{2}{|p{12.5cm}|}{\textbf{Entschuldigt (\cntprotokollfehlend): }} \\
-			\multicolumn{2}{|p{12.5cm}|}{\protokollfehlend}\\
+			\multicolumn{2}{|p{12.5cm}|}{\protokollfehlend} \\
 			\hline
 		\end{longtable}
 	\end{center}
+
 	\tableofcontents
-	\newpage
+	\clearpage
 }
 
