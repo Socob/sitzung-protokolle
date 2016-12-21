@@ -1,33 +1,57 @@
-%%%%%%%%%%%%%%%% Pakete & Klassen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[a4paper, 12pt, oneside]{article}             % Papierformat, Schriftgröße, einseitiges Layout; Verwendung des KOMA-Script
-%\usepackage[ansinew, latin1]{inputenc}                     % Zeichenkodierung: Übersetzung von Umlauten, Windows/Unix-Umgebung; deutsche Umlaute
-\usepackage[utf8]{inputenc}                                 % Zeichenkodierung
-\usepackage[T1]{fontenc}                                    % Schriftart
-\usepackage[ngerman]{babel}                                 % neue deutsche Rechtscheibung, Silbentrennung
-\usepackage{csquotes}                                       % "Schlaue" Anführungszeichen
-\usepackage{lmodern}                                        % Schriftart
-\usepackage{textcomp}                                       % führt Sonderzeichen ein
-\usepackage{url}                                            % URLs sind Hyperlinks
-\usepackage{hyperref}                                       % Verlinkung, jeder Querverweis kann im PDF angeklickt werden
-\usepackage{color}                                          % Farben ermöglichen. Grundfarben: black, white, red, green, yellow, blue
-\usepackage{longtable}                                      % für extra lange Tabellen
-\usepackage{enumitem}                                       % schönere Aufzählungen
-\usepackage{multirow}                                       % \multirow{} und \multicolumn{} für Tabellen
-\usepackage{graphicx}                                       % erweitertes Paket für Bilder-Einbindung (EPS, PNG, JPG, PDF)
-\usepackage[left=1.8cm,right=1.8cm,top=1.8cm]{geometry}     % Seitenränder
-\usepackage[final]{pdfpages}				                % Einfügen von mehrseitigen PDF-Dateien,
-						  % benutzen mit \includepdf[pages=-, pagecommand={\thispagestyle{headings}}]{doc.pdf}
-\pagestyle{myheadings}                                      % ermöglicht Kopfzeilen
-\MakeOuterQuote{"}                                          % Anführungszeichen automatisch umwandeln
+% Header-Datei für Protokolle der Fachschaft Physik
+% 2014-04-17, Simon May
+%%% Pakete & Klassen %%%
+\documentclass[
+  a4paper,          % Papierformat
+  12pt,             % Schriftgröße
+  oneside,          % einseitiges Layout
+  ngerman           % neue deutsche Rechtschreibung
+]{scrartcl}         % Verwendung des KOMA-Script
+\usepackage{babel}                % Silbentrennung, sprachspezifische Einstellungen
+\usepackage[T1]{fontenc}          % Mögliche darstellbare Zeichen (Umlaute, Sonderzeichen...)
+\usepackage[utf8]{inputenc}       % Zeichenkodierung der TeX-Datei
+\usepackage{lmodern}              % Schriftart
+\usepackage{textcomp}             % führt Sonderzeichen ein
+\usepackage{scrpage2}             % Für \ihead{}, \ifoot{} etc.
+\usepackage{xcolor}               % Farben ermöglichen
+\usepackage{csquotes}             % "Schlaue" Anführungszeichen
+\usepackage[
+  bookmarksnumbered, unicode
+]
+{hyperref}                        % Verlinkung, Querverweise können im PDF angeklickt werden
+\usepackage{enumitem}             % schönere Aufzählungen
+\usepackage{longtable}            % für extra lange Tabellen
+\usepackage{graphicx}             % Paket für Bilder-Einbindung (EPS, PNG, JPG, PDF)
+\usepackage[
+  left=1.8cm, right=1.8cm, top=1.8cm, bottom=1.5cm
+]{geometry}                       % Seitenränder
+\usepackage[final]{pdfpages}      % Einfügen von mehrseitigen PDF-Dateien, benutzen mit \includepdf[pages=-, pagecommand={\thispagestyle{headings}}]{doc.pdf}
 
+%%% Einstellungen %%%
+% ermöglicht Kopfzeilen
+\pagestyle{scrheadings}
+% Kopfzeile links
+\ihead{Protokoll der Fachschaftssitzung vom \protokolldatum}
+% Kopfzeile rechts
+\ohead{\pagemark}
+% Fußzeile leer
+\cfoot{}
 
-%%%%%%%% Sachen definieren %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Anführungszeichen automatisch umwandeln
+\MakeOuterQuote{"}
+% Einstellungen für Aufzählungen
+\setlist{itemsep=0cm, parsep=0cm, leftmargin=2em}
+% Hintergrundfarbe
+\pagecolor{white}
+% Textfarbe
+\color{black}
 
+%%% Definitionen %%%
 \makeatletter
 \newcounter{protokollcounter}
 \newcommand{\protokollparse}[1]{\@for\@tempa:=#1\do{\stepcounter{protokollcounter}}}
 
-\newcommand{\protokolldatum}{00:00:0000}
+\newcommand{\protokolldatum}{00.00.0000}
 \newcommand{\protokollbeginn}{00:00 Uhr}
 \newcommand{\protokollende}{00:00 Uhr}
 \newcommand{\protokollant}{NN}
@@ -37,18 +61,19 @@
 \newcommand{\cntprotokollfehlend}{\setcounter{protokollcounter}{0}\protokollparse{\protokollfehlend}\arabic{protokollcounter}}
 
 \newcommand{\protokolltitlepage}{%
-  \begin{center}
-        \includegraphics[width=0.75\textwidth]{fs-physik-logo.pdf}\\
-        \vspace{0.3cm}
-        \Huge{\textbf{Protokoll der Fachschaftssitzung} \\
-        \vspace{0.2cm}
-        \protokolldatum\\
-        \vspace{0.2cm}
-        }
-        \normalsize
+	\begin{center}
+		\includegraphics[width=0.75\textwidth]{fs-physik-logo.pdf}\\
+		\vspace{0.3cm}
+		\Huge{\textbf{Protokoll der Fachschaftssitzung} \\
+		\vspace{0.2cm}
+		\protokolldatum\\
+		\vspace{0.2cm}
+		}
+		\normalsize
 
 		\begin{longtable}{|p{6.1cm}|p{6.1cm}|}
 			\hline
+			\endfirsthead
 			\textbf{Beginn:}    \protokollbeginn &
 			\textbf{Ende:}      \protokollende \\
 			\hline
@@ -64,4 +89,6 @@
 		\end{longtable}
 	\end{center}
 	\tableofcontents
+	\newpage
 }
+
