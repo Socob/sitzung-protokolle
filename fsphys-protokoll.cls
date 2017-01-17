@@ -1,7 +1,4 @@
 % LaTeX-Klasse für Protokolle der Fachschaft Physik der WWU Münster
-% Autor: Simon May
-% Datum: 2016-12-01
-
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{fsphys-protokoll}[%
 	2016/12/01 Protokolle der Fachschaft Physik der WWU Münster%
@@ -168,7 +165,8 @@
 \providebool{protokollprivate}
 \ifdefined\protokollprivatese
 	\protokollprivatetrue
-\else\ifprotokollprivate\else
+\else\ifprotokollprivate
+\else
 	% Falls shell-escape aktiviert ist: direkt auch das nicht öffentliche
 	% Protokoll erzeugen
 	% Shell-Syntax variiert zwischen Betriebssystemen
