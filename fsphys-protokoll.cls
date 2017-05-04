@@ -1,7 +1,7 @@
 % LaTeX-Klasse für Protokolle der Fachschaft Physik der WWU Münster
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{fsphys-protokoll}[%
-	2016/12/01 Protokolle der Fachschaft Physik der WWU Münster%
+	2017/05/04 Protokolle der Fachschaft Physik der WWU Münster%
 ]
 
 % Verwendung von KOMA-Script
@@ -260,7 +260,7 @@
 \renewcommand*{\subsectionformat}{\protokollsecprefix~\thesubsection:\enskip}
 \renewcommand*{\subsubsectionformat}{\protokollsecprefix~\thesubsubsection:\enskip}
 % Anpassen des Inhaltsverzeichnisses
-\newcommand*{\protokolltocformat}[1]{{\let\autodot=:\protokollsecprefix~#1}}
+\newcommand*{\protokolltocformat}[1]{{\let\autodot=:\protokollsecprefix~#1\enskip}}
 \RedeclareSectionCommands[
 	tocentrynumberformat=\protokolltocformat,
 	tocdynnumwidth
@@ -272,7 +272,7 @@
 	% https://tex.stackexchange.com/q/339371/51235
 	% Workaround, bis Bug in tocdynnumwidth behoben ist
 	\newlength{\protokoll@tocfix}%
-	\settowidth{\protokoll@tocfix}{Anhang A:\enskip}%
+	\settowidth{\protokoll@tocfix}{Anhang~A:\enskip}%
 	\newcommand*{\protokoll@thetocfix}{\the\protokoll@tocfix}
 	\addtocontents{toc}{\RedeclareSectionCommand[
 		tocnumwidth=\protokoll@thetocfix
