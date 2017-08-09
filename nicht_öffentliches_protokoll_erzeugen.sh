@@ -7,7 +7,7 @@
 find . -type f -name '*-*-*_protokoll*.tex' -execdir sh -c '
 	tex_prefix="\newif\ifprotokollprivate\protokollprivatetrue"
 	file=$(basename -- "$0" .tex)
-	latexmk -pdf --jobname="$file"_nicht_oeffentlich \
+	latexmk -pdf --jobname="$file"_vertraulich \
 		-pdflatex="pdflatex %O \"$tex_prefix\input{$file}\"" \
 		"$file"
 ' '{}' ';'

@@ -161,18 +161,18 @@
 	\Hrule
 }
 
-% Umgebung für nicht öffentliche Teile des Protokolls
+% Umgebung für vertrauliche Teile des Protokolls
 \providebool{protokollprivate}
 \ifdefined\protokollprivatese
 	\protokollprivatetrue
 \else\ifprotokollprivate
 \else
-	% Falls shell-escape aktiviert ist: direkt auch das nicht öffentliche
+	% Falls shell-escape aktiviert ist: direkt auch das vertrauliche
 	% Protokoll erzeugen
 	% Shell-Syntax variiert zwischen Betriebssystemen
 	\ifwindows
 		\ShellEscape{%
-			latexmk -pdf --jobname="\jobname_nicht_oeffentlich" %
+			latexmk -pdf --jobname="\jobname_vertraulich" %
 				-pdflatex="pdflatex \@percentchar O %
 				\def\string\protokollprivatese{1} %
 				\string\input{\jobname}" %
@@ -180,7 +180,7 @@
 		}
 	\else
 		\ShellEscape{%
-			latexmk -pdf --jobname='\jobname_nicht_oeffentlich' %
+			latexmk -pdf --jobname='\jobname_vertraulich' %
 				-pdflatex='pdflatex \@percentchar O %
 				'"'"'\def\string\protokollprivatese{1} %
 				\string\input{\jobname}'"'" %
@@ -192,7 +192,7 @@
 	\let\shapedefault=\itdefault
 	\itshape
 }
-% Inhalt von Umgebung „nichtoeffentlich“ erscheint nur im nicht öffentlichen
+% Inhalt von Umgebung „nichtoeffentlich“ erscheint nur im vertraulichen
 % Protokoll; im öffentlichen Protokoll wird ein Hinweis ausgegeben
 \newcommand*{\protokoll@privatemsg}{%
 	\begin{list}{}{\rightmargin\leftmargin\protokoll@privatestyle}
@@ -283,9 +283,9 @@
 	\newcommand*{\protokollfehlend}{NN}
 	% Unterscheidung öffentlich/nicht öffentlich
 	\ifprotokollprivate
-		\newcommand*{\protokolltitle}{Protokoll der Sitzung des Fachschaftsrats\\(mit nicht öffentlichem Teil)}
-		\newcommand*{\protokoll@hypertitle}{(Nicht öffentliches) Protokoll der Sitzung des Fachschaftsrats vom \protokollformatteddate}
-		\newcommand*{\protokollheader}{\strong{Nicht öffentliches} Protokoll der FSR-Sitzung vom \protokollformatteddate}
+		\newcommand*{\protokolltitle}{Protokoll der Sitzung des Fachschaftsrats\\(mit vertraulichem Teil)}
+		\newcommand*{\protokoll@hypertitle}{(Vertrauliches) Protokoll der Sitzung des Fachschaftsrats vom \protokollformatteddate}
+		\newcommand*{\protokollheader}{\strong{Vertrauliches} Protokoll der FSR-Sitzung vom \protokollformatteddate}
 	\else
 		\newcommand*{\protokolltitle}{Protokoll der Sitzung des Fachschaftsrats}
 		\newcommand*{\protokoll@hypertitle}{Protokoll der Sitzung des Fachschaftsrats vom \protokollformatteddate}

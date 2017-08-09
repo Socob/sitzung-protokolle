@@ -7,7 +7,7 @@ setlocal
 pushd %~dp0
 
 for %%f in (*-*-*_protokoll*.tex) do (
-	latexmk -pdf --jobname="%%~nf_nicht_oeffentlich" ^
+	latexmk -pdf --jobname="%%~nf_vertraulich" ^
 		-pdflatex="pdflatex %%O \newif\ifprotokollprivate\protokollprivatetrue\input{%%~nf}" ^
 		"%%~nf"
 )
