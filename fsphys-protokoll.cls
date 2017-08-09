@@ -274,7 +274,7 @@
 
 \SetupKeyvalOptions{prefix=protokoll@}
 % Option „sitzung“: Unterscheiden zwischen Protokoll für
-% FSR-Sitzung oder konstituierende FSV-Sitzung
+% FSR-Sitzung oder (konstituierende) FSV-Sitzung
 \DeclareStringOption[fsr]{sitzung}
 
 \ProcessKeyvalOptions*
@@ -291,7 +291,7 @@
 		\newcommand*{\protokoll@hypertitle}{Protokoll der Sitzung des Fachschaftsrats vom \protokollformatteddate}
 		\newcommand*{\protokollheader}{Protokoll der FSR-Sitzung vom \protokollformatteddate}
 	\fi
-	
+
 	% \hypersetup kann erst nach Verarbeitung des Datums verwendet werden.
 	% Die Redefinition durch den Nutzer liegt erst am Ende der Präambel vor.
 	\AtEndPreamble{
@@ -302,9 +302,9 @@
 			pdfkeywords={WWU Münster, Fachschaft Physik, Fachschaftsrat, Sitzung, Protokoll}
 		}
 	}
-	
+
 	\newcommand{\protokoll@infotable}{%
-		\begin{longtable}{|p{6.1cm}|p{6.1cm}|}
+		\begin{longtable}{|p{5.5cm}|p{9.5cm}|}
 			\hline
 			\endfirsthead
 			\textbf{Beginn:}    \protokollbeginn &
@@ -313,11 +313,48 @@
 			\textbf{Protokollant:} &
 			\protokollant \\
 			\hline
-			\multicolumn{2}{|p{12.5cm}|}{\textbf{Anwesende (\protokoll@listcount{\protokollanwesend}):}} \\
-			\multicolumn{2}{|p{12.5cm}|}{\raggedright\protokollanwesend} \\
+			\multicolumn{2}{|p{15cm}|}{\textbf{Anwesende (\protokoll@listcount{\protokollanwesend}):}} \\
+			\multicolumn{2}{|p{15cm}|}{\raggedright\protokollanwesend} \\
 			\hline
-			\multicolumn{2}{|p{12.5cm}|}{\textbf{Entschuldigt (\protokoll@listcount{\protokollfehlend}):}} \\
-			\multicolumn{2}{|p{12.5cm}|}{\raggedright\protokollfehlend} \\
+			\multicolumn{2}{|p{15cm}|}{\textbf{Entschuldigt (\protokoll@listcount{\protokollfehlend}):}} \\
+			\multicolumn{2}{|p{15cm}|}{\raggedright\protokollfehlend} \\
+			\hline
+		\end{longtable}
+	}
+}{
+%% FSV-Sitzung
+\ifstr{\protokoll@sitzung}{fsv}{
+	\newcommand*{\protokollweitere}{NN}
+	\newcommand*{\protokolltitle}{Protokoll der Sitzung der Fachschaftsvertretung}
+	\newcommand*{\protokoll@hypertitle}{Protokoll der Sitzung der Fachschaftsvertretung vom \protokollformatteddate}
+	\newcommand*{\protokollheader}{Protokoll der FSV-Sitzung vom \protokollformatteddate}
+
+	% \hypersetup kann erst nach Verarbeitung des Datums verwendet werden.
+	% Die Redefinition durch den Nutzer liegt erst am Ende der Präambel vor.
+	\AtEndPreamble{
+		\hypersetup{
+			pdftitle={\protokoll@hypertitle},
+			pdfauthor={Fachschaftsvertretung Physik der WWU Münster, \protokollant},
+			pdfsubject={Fachschaftssitzung},
+			pdfkeywords={WWU Münster, Fachschaft Physik, Fachschaftsvertretung, Sitzung, Protokoll}
+		}
+	}
+
+	\newcommand{\protokoll@infotable}{%
+		\begin{longtable}{|p{5.5cm}|p{9.5cm}|}
+			\hline
+			\endfirsthead
+			\textbf{Beginn:}    \protokollbeginn &
+			\textbf{Ende:}      \protokollende \\
+			\hline
+			\textbf{Protokollant:} &
+			\protokollant \\
+			\hline
+			\multicolumn{2}{|p{15cm}|}{\textbf{Anwesende Mitglieder der Fachschaftsvertretung (\protokoll@listcount{\protokollanwesend}):}} \\
+			\multicolumn{2}{|p{15cm}|}{\raggedright\protokollanwesend} \\
+			\hline
+			\multicolumn{2}{|p{15cm}|}{\textbf{Weitere Anwesende (\protokoll@listcount{\protokollweitere}):}} \\
+			\multicolumn{2}{|p{15cm}|}{\raggedright\protokollweitere} \\
 			\hline
 		\end{longtable}
 	}
@@ -328,7 +365,7 @@
 	\newcommand*{\protokolltitle}{Protokoll zur konstituierenden Sitzung der Fachschaftsvertretung Physik\\sowie Wahl des Fachschaftsrats}
 	\newcommand*{\protokoll@hypertitle}{Protokoll zur konstituierenden Sitzung der Fachschaftsvertretung Physik vom \protokollformatteddate}
 	\newcommand*{\protokollheader}{Protokoll zur konstituierenden FSV-Sitzung vom \protokollformatteddate}
-	
+
 	% \hypersetup kann erst nach Verarbeitung des Datums verwendet werden.
 	% Die Redefinition durch den Nutzer liegt erst am Ende der Präambel vor.
 	\AtEndPreamble{
@@ -339,9 +376,9 @@
 			pdfkeywords={WWU Münster, Fachschaft Physik, Fachschaftsvertretung, konstituierende Sitzung, Wahl, Fachschaftsrat, Protokoll}
 		}
 	}
-	
+
 	\newcommand{\protokoll@infotable}{%
-		\begin{longtable}{|p{5cm}|p{9.5cm}|}
+		\begin{longtable}{|p{5.5cm}|p{9.5cm}|}
 			\hline
 			\endfirsthead
 			\textbf{Beginn:}    \protokollbeginn &
@@ -365,23 +402,23 @@
 }{% else
 	% falscher Wert für Option „sitzung“
 	\ClassError{\@currname}{Invalid option: "sitzung=\protokoll@sitzung"}
-		{Possible values are: fsr, fsv-konstituierend.}
-}}
+		{Possible values are: fsr, fsv, fsv-konstituierend.}
+}}}
 
 % Ausgabe von Titel und Inhaltsverzeichnis am Beginn des Dokuments
 \AtBeginDocument{%
 	\begin{center}
 		\includegraphics[width=0.75\textwidth]{fs-physik-logo.pdf}
-		
+
 		{\usekomafont{title}\huge
 		\protokolltitle
 		\par}
-		
+
 		\medskip
 		{\usekomafont{date}
 		\protokollformatteddate
 		\par}
-		
+
 		\medskip
 		\protokoll@infotable
 	\end{center}
