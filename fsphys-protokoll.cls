@@ -1,7 +1,7 @@
 % LaTeX-Klasse für Protokolle der Fachschaft Physik der WWU Münster
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{fsphys-protokoll}[%
-	2017/05/04 Protokolle der Fachschaft Physik der WWU Münster%
+	2017/08/09 Protokolle der Fachschaft Physik der WWU Münster%
 ]
 
 % Verwendung von KOMA-Script
@@ -268,16 +268,6 @@
 % Im Anhang nicht mehr „TOP“, sondern „Anhang“ vor Überschriften schreiben
 % (im Text und im Inhaltsverzeichnis)
 \newcommand*{\appendixmore}{%
-	% Leider funktioniert tocdynnumwidth zur Zeit aufgrund eines Bugs nicht richtig!
-	% https://tex.stackexchange.com/q/339371/51235
-	% Workaround, bis Bug in tocdynnumwidth behoben ist
-	\newlength{\protokoll@tocfix}%
-	\settowidth{\protokoll@tocfix}{Anhang~A:\enskip}%
-	\newcommand*{\protokoll@thetocfix}{\the\protokoll@tocfix}
-	\addtocontents{toc}{\RedeclareSectionCommand[
-		tocnumwidth=\protokoll@thetocfix
-	]{section}}%
-	% ---
 	\renewcommand*{\protokollsecprefix}{\appendixname}%
 	\addtocontents{toc}{\protect\renewcommand*{\protect\protokollsecprefix}{\appendixname}}%
 }
@@ -288,7 +278,7 @@
 \DeclareStringOption[fsr]{sitzung}
 
 \ProcessKeyvalOptions*
-% FSR-Sitzung
+%% FSR-Sitzung
 \ifstr{\protokoll@sitzung}{fsr}{
 	\newcommand*{\protokollfehlend}{NN}
 	% Unterscheidung öffentlich/nicht öffentlich
@@ -332,7 +322,7 @@
 		\end{longtable}
 	}
 }{
-% Konstituierende FSV-Sitzung
+%% Konstituierende FSV-Sitzung
 \ifstr{\protokoll@sitzung}{fsv-konstituierend}{
 	\newcommand*{\protokollweitere}{NN}
 	\newcommand*{\protokolltitle}{Protokoll zur konstituierenden Sitzung der Fachschaftsvertretung Physik\\sowie Wahl des Fachschaftsrats}
