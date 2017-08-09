@@ -1,6 +1,4 @@
 #!/bin/sh
-# Autor: Simon May
-# Datum: 2016-11-29
 # Alle Dateien mit Namen der Form „*-*-*_protokoll*.tex“ mit latexmk 
 # (eingestellt auf pdflatex) kompilieren. Dabei wird die nicht öffentliche
 # Version durch Setzen von \protokollprivatetrue erzeugt.
