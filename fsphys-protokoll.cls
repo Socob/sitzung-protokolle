@@ -196,8 +196,7 @@
 % Protokoll; im öffentlichen Protokoll wird ein Hinweis ausgegeben
 \newcommand*{\protokoll@privatemsg}{%
 	\begin{list}{}{\rightmargin\leftmargin\protokoll@privatestyle}
-		\item
-		An dieser Stelle ist ein Teil des Protokolls nicht öffentlich.
+		\item An dieser Stelle ist ein Teil des Protokolls nicht öffentlich.
 	\end{list}
 }
 % Version mit Stern: Im nicht öffentlichen Protokoll wird der Inhalt direkt
@@ -237,8 +236,6 @@
 		\newcommand*{\protokollformatteddate}{\DTMusedate{protokolldate}}}
 		{\newcommand*{\protokollformatteddate}{\protokolldatum}}%
 }
-% Verarbeitung des Datums am Ende der Präambel, nach Definition durch Nutzer
-\AtEndPreamble{\protokollsetformatteddate}
 % Verarbeiten von Teilnehmerlisten
 \newcounter{protokollcounter}
 \newcommand*{\protokoll@parse}[1]{\@for\@tempa:=#1\do{\stepcounter{protokollcounter}}}
@@ -252,6 +249,24 @@
 \newcommand*{\protokollort}{N/A}
 \newcommand*{\protokollsecprefix}{TOP}
 \newcommand*{\protokollanwesend}{NN}
+
+% Bereitstellung von Werten am Ende der Präambel, nach Definition durch Nutzer
+\AtEndPreamble{
+	% Formatiertes Datum
+	\protokollsetformatteddate
+	% Anzahl der Anwesenden
+	\newcounter{protokollanwesend}
+	\protokoll@parse{\protokollanwesend}
+	\setcounter{protokollanwesend}{\value{protokollcounter}}
+	\newcommand*{\protokollanzahlanwesend}{\arabic{protokollanwesend}}
+	% Anzahl der weiteren Anwesenden
+	\@ifundefined{protokollweitere}{}{
+		\newcounter{protokollweitere}
+		\protokoll@parse{\protokollweitere}
+		\setcounter{protokollweitere}{\value{protokollcounter}}
+		\newcommand*{\protokollanzahlweitere}{\arabic{protokollweitere}}
+	}
+}
 
 %%% Titelseite, Inhaltsverzeichnis und Überschriften
 %%% Unterscheidung der verschiedenen Sitzungen (FSV, FSR)
