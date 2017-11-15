@@ -249,6 +249,7 @@
 \newcommand*{\protokollort}{N/A}
 \newcommand*{\protokollsecprefix}{TOP}
 \newcommand*{\protokollanwesend}{NN}
+\newcommand*{\protokollweitere}{NN}
 
 % Bereitstellung von Werten am Ende der Präambel, nach Definition durch Nutzer
 \AtEndPreamble{
@@ -328,18 +329,20 @@
 			\textbf{Protokollant:} &
 			\protokollant \\
 			\hline
-			\multicolumn{2}{|p{15cm}|}{\textbf{Anwesende (\protokoll@listcount{\protokollanwesend}):}} \\
+			\multicolumn{2}{|p{15cm}|}{\textbf{Anwesende Mitglieder des FSR (\protokoll@listcount{\protokollanwesend}):}} \\
 			\multicolumn{2}{|p{15cm}|}{\raggedright\protokollanwesend} \\
 			\hline
-			\multicolumn{2}{|p{15cm}|}{\textbf{Entschuldigt (\protokoll@listcount{\protokollfehlend}):}} \\
+			\multicolumn{2}{|p{15cm}|}{\textbf{Entschuldigte Mitglieder des FSR (\protokoll@listcount{\protokollfehlend}):}} \\
 			\multicolumn{2}{|p{15cm}|}{\raggedright\protokollfehlend} \\
+			\hline
+			\multicolumn{2}{|p{15cm}|}{\textbf{Weitere Anwesende  (\protokoll@listcount{\protokollweitere}):}} \\
+			\multicolumn{2}{|p{15cm}|}{\raggedright\protokollweitere} \\
 			\hline
 		\end{longtable}
 	}
 }{
 %% FSV-Sitzung
 \ifstr{\protokoll@sitzung}{fsv}{
-	\newcommand*{\protokollweitere}{NN}
 	\newcommand*{\protokolltitle}{Protokoll der Sitzung der Fachschaftsvertretung}
 	\newcommand*{\protokoll@hypertitle}{Protokoll der Sitzung der Fachschaftsvertretung vom \protokollformatteddate}
 	\newcommand*{\protokollheader}{Protokoll der FSV-Sitzung vom \protokollformatteddate}
