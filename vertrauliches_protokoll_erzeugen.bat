@@ -5,12 +5,12 @@ setlocal
 pushd %~dp0
 
 for %%f in (*-*-*_protokoll*.tex) do (
-	latexmk -pdf --jobname="%%~nf_vertraulich" ^
+	latexmk -pdf -silent --jobname="%%~nf_vertraulich" ^
 		-pdflatex="pdflatex %%O \newif\ifprotokollprivate\protokollprivatetrue\input{%%~nf}" ^
 		"%%~nf"
 )
 :: Hilfsdateien entfernen
-del *.aux *.log *.out *.toc *.fls *.fdb_latexmk *.synctex.gz *.cut
+del *.aux *.log *.out *.toc *.fls *.fdb_latexmk *.synctex.gz
 
 popd
 
