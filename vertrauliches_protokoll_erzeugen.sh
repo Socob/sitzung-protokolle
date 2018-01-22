@@ -2,9 +2,9 @@
 # Alle Dateien mit Namen der Form „*-*-*_protokoll*.tex“ mit latexmk 
 # (eingestellt auf pdflatex) kompilieren. Dabei wird die nicht öffentliche
 # Version durch Setzen von \protokollprivatetrue erzeugt.
-find . -type f -name '*-*-*_protokoll*.tex' -execdir sh -c '
+find -maxdepth 1 -type f -name '*-*-*_protokoll*.tex' -execdir sh -c '
 	tex_prefix="\newif\ifprotokollprivate\protokollprivatetrue"
-	file=$(basename -- "$0" .tex)
+	file="$(basename -- "$0" .tex)"
 	latexmk -pdf -silent --jobname="$file"_vertraulich \
 		-pdflatex="pdflatex %O \"$tex_prefix\input{$file}\"" \
 		"$file"
