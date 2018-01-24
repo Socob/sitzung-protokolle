@@ -1,7 +1,7 @@
 % LaTeX-Klasse für Protokolle der Fachschaft Physik der WWU Münster
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{fsphys-protokoll}[%
-	2017/08/09 Protokolle der Fachschaft Physik der WWU Münster%
+	2018/01/24 Protokolle der Fachschaft Physik der WWU Münster%
 ]
 
 % Verwendung von KOMA-Script
@@ -261,12 +261,10 @@
 	\setcounter{protokollanwesend}{\value{protokollcounter}}
 	\newcommand*{\protokollanzahlanwesend}{\arabic{protokollanwesend}}
 	% Anzahl der weiteren Anwesenden
-	\@ifundefined{protokollweitere}{}{
-		\newcounter{protokollweitere}
-		\protokoll@parse{\protokollweitere}
-		\setcounter{protokollweitere}{\value{protokollcounter}}
-		\newcommand*{\protokollanzahlweitere}{\arabic{protokollweitere}}
-	}
+	\newcounter{protokollweitere}
+	\protokoll@parse{\protokollweitere}
+	\setcounter{protokollweitere}{\value{protokollcounter}}
+	\newcommand*{\protokollanzahlweitere}{\arabic{protokollweitere}}
 }
 
 %%% Titelseite, Inhaltsverzeichnis und Überschriften
@@ -379,7 +377,6 @@
 }{
 %% Konstituierende FSV-Sitzung
 \ifstr{\protokoll@sitzung}{fsv-konstituierend}{
-	\newcommand*{\protokollweitere}{NN}
 	\newcommand*{\protokolltitle}{Protokoll zur konstituierenden Sitzung der Fachschaftsvertretung Physik\\sowie Wahl des Fachschaftsrats}
 	\newcommand*{\protokoll@hypertitle}{Protokoll zur konstituierenden Sitzung der Fachschaftsvertretung Physik vom \protokollformatteddate}
 	\newcommand*{\protokollheader}{Protokoll zur konstituierenden FSV-Sitzung vom \protokollformatteddate}
