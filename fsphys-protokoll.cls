@@ -68,7 +68,7 @@
 % Formatierung von Daten
 \RequirePackage[useregional]{datetime2}
 % Für Kopf-/Fußzeile etc.
-\RequirePackage{scrlayer-scrpage}
+\RequirePackage[automark]{scrlayer-scrpage}
 % Farben ermöglichen
 \RequirePackage{xcolor}
 % Paket für Bilder-Einbindung (EPS, PNG, JPG, PDF)
@@ -290,6 +290,30 @@
 % Option „sitzung“: Unterscheiden zwischen Protokoll für
 % FSR-Sitzung oder (konstituierende) FSV-Sitzung
 \DeclareStringOption[fsr]{sitzung}
+
+\newcommand*{\protokollentwurf}{
+    \usepackage{expl3}
+    \ExplSyntaxOn
+    \newcommand\watermark[1]
+    {\makebox[0pt][c]
+        {\scalebox{3.1}% scaling
+        {\rotatebox[origin=bc]{50}% rotating
+            {\Huge\bfseries\textcolor{lightgray}% font settings
+                {\watermarktext}{}
+    }}}}
+    \ExplSyntaxOff
+    \newcommand\watermarktext{\textbf{ENTWURF}}
+
+    \DeclareNewLayer[
+    background,
+    %textarea,
+    mode=picture,
+    contents={\putC{\watermark{\the\value{page}}}}
+    ]{watermark}
+    \AddLayersToPageStyle{@everystyle@}{watermark}
+}
+
+\DeclareVoidOption{entwurf}{\protokollentwurf}
 
 \ProcessKeyvalOptions*
 %% FSR-Sitzung
