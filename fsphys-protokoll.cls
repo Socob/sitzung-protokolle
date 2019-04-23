@@ -292,6 +292,7 @@
 \DeclareStringOption[fsr]{sitzung}
 
 \newcommand*{\protokollentwurf}{
+    % Angelehnt an https://tex.stackexchange.com/a/400998 von esdd
     \usepackage{expl3}
     \ExplSyntaxOn
     \newcommand\watermark[1]
