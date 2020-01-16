@@ -1,7 +1,7 @@
 % LaTeX-Klasse für Protokolle der Fachschaft Physik der WWU Münster
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{fsphys-protokoll}[%
-	2018/01/24 Protokolle der Fachschaft Physik der WWU Münster%
+	2018/01/24 Protokolle der Fachschaft Physik der WWU Muenster%
 ]
 
 % Verwendung von KOMA-Script
