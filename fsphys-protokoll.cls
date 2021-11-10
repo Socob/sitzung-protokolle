@@ -349,7 +349,7 @@
 			\textbf{Beginn:}    \protokollbeginn &
 			\textbf{Ende:}      \protokollende \\
 			\hline
-			\textbf{Protokollant:} &
+			\textbf{Protokoll:} &
 			\protokollant \\
 			\hline
 			\multicolumn{2}{|p{15cm}|}{\textbf{Anwesende Mitglieder des FSR (\protokoll@listcount{\protokollanwesend}):}} \\
@@ -388,7 +388,7 @@
 			\textbf{Beginn:}    \protokollbeginn &
 			\textbf{Ende:}      \protokollende \\
 			\hline
-			\textbf{Protokollant:} &
+			\textbf{Protokoll:} &
 			\protokollant \\
 			\hline
 			\multicolumn{2}{|p{15cm}|}{\textbf{Anwesende Mitglieder der Fachschaftsvertretung (\protokoll@listcount{\protokollanwesend}):}} \\
@@ -424,7 +424,7 @@
 			\textbf{Beginn:}    \protokollbeginn &
 			\textbf{Ende:}      \protokollende \\
 			\hline
-			\textbf{Protokollant:} &
+			\textbf{Protokoll:} &
 			\protokollant \\
 			\hline
 			\textbf{Ort:} &
