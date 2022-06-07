@@ -1,8 +1,15 @@
 # sitzung-protokolle
+
 TeX-Vorlage für Protokolle von Sitzungen des Fachschaftsrats (FSR) und der
 Fachschaftsvertretung (FSV).
 
+## Overleaf mirror
+<https://www.overleaf.com/read/byvszqwprpjt> 
+
+Um die Vorlage bearbeiten zu können, muss links oben auf `Menu` und dann auf `Copy Project` geklickt werden. 
+
 ## Nicht öffentliche Teile in Protokollen
+
 Mit der Umgebung `\begin{nichtoeffentlich} … \end{nichtoeffentlich}` können
 Teile des Protokolls als nicht öffentlich (vertraulich) markiert werden. Im
 normalen (öffentlichen) Protokoll erscheint an solchen Stellen nur ein

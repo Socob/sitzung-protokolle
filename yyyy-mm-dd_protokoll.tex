@@ -1,3 +1,7 @@
+% Entkommentieren für nicht oeffentliches Protokoll. 
+% Die finale Fassung auf der FS-Platte sollte wieder kommentiert, also nicht privat (oeffentlich), sein. 
+%\newif\ifprotokollprivate\protokollprivatetrue
+
 \documentclass[sitzung=fsr,entwurf]{fsphys-protokoll}
 
 %%% Datum, Uhrzeit, Teilnehmer
@@ -44,7 +48,13 @@
 
 \section{Verschiedenes}
 \begin{itemize}
-	\item 
+	\item öffentlich
 \end{itemize}
+	\begin{nichtoeffentlich}
+  \begin{itemize}
+      \item Dieser Punkt ist nicht öffentlich
+  \end{itemize}
+\end{nichtoeffentlich}
+
 
 \end{document}
