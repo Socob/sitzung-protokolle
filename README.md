@@ -2,6 +2,9 @@
 TeX-Vorlage für Protokolle von Sitzungen des Fachschaftsrats (FSR) und der
 Fachschaftsvertretung (FSV).
 
+## Overleaf mirror
+<https://www.overleaf.com/read/byvszqwprpjt>
+
 ## Nicht öffentliche Teile in Protokollen
 Mit der Umgebung `\begin{nichtoeffentlich} … \end{nichtoeffentlich}` können
 Teile des Protokolls als nicht öffentlich (vertraulich) markiert werden. Im
