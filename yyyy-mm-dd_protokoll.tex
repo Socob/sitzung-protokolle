@@ -1,0 +1,58 @@
+% Entkommentieren für Nicht oeffentliches Protokoll
+\newif\ifprotokollprivate\protokollprivatefalse
+\documentclass[sitzung=fsr,entwurf]{fsphys-protokoll}
+
+%%% Datum, Uhrzeit, Teilnehmer
+\renewcommand*{\protokolldatum}{yyyy-mm-dd}
+\renewcommand*{\protokollbeginn}{hh:mm~Uhr}
+\renewcommand*{\protokollende}{hh:mm~Uhr}
+\renewcommand*{\protokollant}{Name des Protokollanten}
+% Listen unbedingt durch Kommata trennen, sonst wird nicht richtig gezählt.
+% Anwesende FSR-Mitglieder
+\renewcommand*{\protokollanwesend}{Namen}
+% Entschuldigte
+\renewcommand*{\protokollfehlend}{Namen}
+% Weitere Anwesende auf der Sitzung
+\renewcommand*{\protokollweitere}{Namen}
+
+\begin{document}
+
+\section{Genehmigung des letzten Protokolls und des Putzdiensts}
+\begin{itemize}
+	\item Die Beschlussfähigkeit wird gemäß §~3 Abs.~2 der Geschäftsordnung des Fachschaftsrats Physik mit {\protokollanzahlanwesend} anwesenden von X Mitgliedern des Fachschaftsrats festgestellt.
+	\item 
+\end{itemize}
+
+\section{Berichte}
+\begin{itemize}
+	\item 
+\end{itemize}
+
+\section{E-Mail-Anfragen}
+\begin{itemize}
+	\item 
+\end{itemize}
+
+\section{Kommissionen und Fachbereichsrat~(FBR)/Senat}
+\begin{itemize}
+	\item 
+\end{itemize}
+
+\section{Fachschaftenkonferenz~(FK)}
+\begin{itemize}
+	\item 
+	\item Ansonsten wird auf das \href{https://www.asta.ms/fachschaftenportal#fkprotokolle}{FK-Protokoll} verwiesen.
+\end{itemize}
+
+\section{Verschiedenes}
+\begin{itemize}
+	\item öffentlich
+\end{itemize}
+	\begin{nichtoeffentlich}
+\begin{itemize}
+    \item Dieser Punkt ist nicht öffentlich
+\end{itemize}
+    \end{nichtoeffentlich}
+
+
+\end{document}
